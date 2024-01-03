@@ -9,8 +9,8 @@ List<Note> notes = new()
         Id = 1,
         Title = "Test1",
         Content = "Testing notes",
-        CreatedDate = new DateTimeOffset(2023, 12, 23, 22, 11, 0, TimeSpan.FromHours(1)),
-        ModifiedDate = new DateTimeOffset(DateTime.Now),
+        CreatedDate = new DateTimeOffset(2020, 12, 23, 22, 11, 0, TimeSpan.FromHours(1)),
+        ModifiedDate = new DateTimeOffset(2023, 12, 23, 22, 11, 0, TimeSpan.FromHours(1)),
         Category = "School"
     },
 
@@ -19,8 +19,8 @@ List<Note> notes = new()
         Id = 2,
         Title = "Test2sss",
         Content = "Testing notes part2",
-        CreatedDate = new DateTimeOffset(2022, 1, 1, 1, 1, 0, TimeSpan.FromHours(1)),
-        ModifiedDate = new DateTimeOffset(DateTime.Now),
+        CreatedDate = new DateTimeOffset(2020, 1, 1, 1, 1, 0, TimeSpan.FromHours(1)),
+        ModifiedDate = new DateTimeOffset(2023, 11, 11, 11, 11, 0, TimeSpan.FromHours(1)),
         Category = "Home"
     }
 };
@@ -50,5 +50,30 @@ app.MapPost("/notes", (Note note) =>
 
     return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
 });
+
+app.MapPut("/notes/{id}", (int id, Note updatedNote) =>
+{
+    Note? existingNote = notes.Find(note => note.Id == id);
+
+    if (existingNote is null)
+    {
+        return Results.NotFound();
+    }
+
+
+    existingNote.Title = updatedNote.Title;
+    existingNote.Content = updatedNote.Content;
+    existingNote.Category = updatedNote.Category;
+
+
+    existingNote.ModifiedDate = DateTime.Now;
+    existingNote.ModifiedDate = existingNote.ModifiedDate.AddTicks(-(existingNote.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
+
+
+    return Results.NoContent();
+});
+
+
+
 
 app.Run();
