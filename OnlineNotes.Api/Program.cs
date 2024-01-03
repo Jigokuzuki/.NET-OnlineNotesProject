@@ -1,6 +1,6 @@
 using OnlineNotes.Api.Entities;
 
-
+const string GetNoteEndpointName = "GetNote";
 
 List<Note> notes = new()
 {
@@ -30,6 +30,25 @@ var app = builder.Build();
 
 app.MapGet("/notes", () => notes);
 
-app.MapGet("/notes/{id}", (int id) => notes.Find(game => game.Id == id));
+app.MapGet("/notes/{id}", (int id) =>
+{
+    Note? note = notes.Find(game => game.Id == id);
+
+    if (note is null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(note);
+})
+.WithName(GetNoteEndpointName);
+
+app.MapPost("/notes", (Note note) =>
+{
+    note.Id = notes.Max(note => note.Id) + 1;
+    notes.Add(note);
+
+    return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
+});
 
 app.Run();
