@@ -75,5 +75,19 @@ app.MapPut("/notes/{id}", (int id, Note updatedNote) =>
 
 
 
+app.MapDelete("/notes/{id}", (int id) =>
+{
+    Note? note = notes.Find(note => note.Id == id);
+
+    if (note is not null)
+    {
+        notes.Remove(note);
+    }
+
+
+    return Results.NoContent();
+});
+
+
 
 app.Run();
