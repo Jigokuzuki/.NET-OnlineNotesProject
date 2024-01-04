@@ -28,9 +28,12 @@ List<Note> notes = new()
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/notes", () => notes);
+var group = app.MapGroup("/notes");
 
-app.MapGet("/notes/{id}", (int id) =>
+
+group.MapGet("/", () => notes);
+
+group.MapGet("/{id}", (int id) =>
 {
     Note? note = notes.Find(game => game.Id == id);
 
@@ -43,7 +46,7 @@ app.MapGet("/notes/{id}", (int id) =>
 })
 .WithName(GetNoteEndpointName);
 
-app.MapPost("/notes", (Note note) =>
+group.MapPost("/", (Note note) =>
 {
     note.Id = notes.Max(note => note.Id) + 1;
     notes.Add(note);
@@ -51,7 +54,7 @@ app.MapPost("/notes", (Note note) =>
     return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
 });
 
-app.MapPut("/notes/{id}", (int id, Note updatedNote) =>
+group.MapPut("/{id}", (int id, Note updatedNote) =>
 {
     Note? existingNote = notes.Find(note => note.Id == id);
 
@@ -75,7 +78,7 @@ app.MapPut("/notes/{id}", (int id, Note updatedNote) =>
 
 
 
-app.MapDelete("/notes/{id}", (int id) =>
+group.MapDelete("/{id}", (int id) =>
 {
     Note? note = notes.Find(note => note.Id == id);
 
