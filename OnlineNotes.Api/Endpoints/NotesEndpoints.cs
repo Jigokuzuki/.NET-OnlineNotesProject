@@ -4,13 +4,7 @@ namespace OnlineNotes.Api.Endpoints;
 
 public static class NotesEndpoints
 {
-
     const string GetNoteEndpointName = "GetNote";
-
-
-
-
-
 
     static List<Note> notes = new()
     {
