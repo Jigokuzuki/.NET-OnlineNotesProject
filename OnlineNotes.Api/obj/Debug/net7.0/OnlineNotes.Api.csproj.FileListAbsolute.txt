@@ -24,3 +24,9 @@ C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\
 C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.genruntimeconfig.cache
 C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\ref\OnlineNotes.Api.dll
 C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.sourcelink.json
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\bin\Debug\net7.0\MinimalApis.Extensions.dll
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\bin\Debug\net7.0\MiniValidation.dll
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.csproj.AssemblyReference.cache
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.csproj.CopyComplete
