@@ -9,15 +9,13 @@ public static class NotesEndpoints
 
     public static RouteGroupBuilder MapNotesEndpoints(this IEndpointRouteBuilder routes)
     {
-        InMemNotesRepository repository = new();
-
         var group = routes.MapGroup("/notes")
                         .WithParameterValidation();
 
 
-        group.MapGet("/", () => repository.GetAll());
+        group.MapGet("/", (INotesRepository repository) => repository.GetAll());
 
-        group.MapGet("/{id}", (int id) =>
+        group.MapGet("/{id}", (INotesRepository repository, int id) =>
         {
             Note? note = repository.Get(id);
 
@@ -30,14 +28,14 @@ public static class NotesEndpoints
         })
         .WithName(GetNoteEndpointName);
 
-        group.MapPost("/", (Note note) =>
+        group.MapPost("/", (INotesRepository repository, Note note) =>
         {
             repository.Create(note);
 
             return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
         });
 
-        group.MapPut("/{id}", (int id, Note updatedNote) =>
+        group.MapPut("/{id}", (INotesRepository repository, int id, Note updatedNote) =>
         {
             Note? existingNote = repository.Get(id);
 
@@ -62,7 +60,7 @@ public static class NotesEndpoints
 
 
 
-        group.MapDelete("/{id}", (int id) =>
+        group.MapDelete("/{id}", (INotesRepository repository, int id) =>
         {
             Note? note = repository.Get(id);
 

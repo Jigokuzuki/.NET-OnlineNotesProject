@@ -2,7 +2,7 @@ using OnlineNotes.Api.Entities;
 
 namespace OnlineNotes.Api.Repositories;
 
-public class InMemNotesRepository
+public class InMemNotesRepository : INotesRepository
 {
     private readonly List<Note> notes = new()
     {
