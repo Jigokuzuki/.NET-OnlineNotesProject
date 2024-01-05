@@ -18,3 +18,11 @@ public record CreateNoteDto(
     DateTimeOffset ModifiedDate,
     [Required][StringLength(20)] string Category
 );
+
+public record UpdateNoteDto(
+    [Required][StringLength(50)] string Title,
+    [Required] string Content,
+    DateTimeOffset CreatedDate,
+    DateTimeOffset ModifiedDate,
+    [Required][StringLength(20)] string Category
+);

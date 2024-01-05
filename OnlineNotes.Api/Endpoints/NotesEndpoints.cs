@@ -1,3 +1,4 @@
+using OnlineNotes.Api.Dtos;
 using OnlineNotes.Api.Entities;
 using OnlineNotes.Api.Repositories;
 
@@ -12,8 +13,8 @@ public static class NotesEndpoints
         var group = routes.MapGroup("/notes")
                         .WithParameterValidation();
 
-
-        group.MapGet("/", (INotesRepository repository) => repository.GetAll());
+        group.MapGet("/", (INotesRepository repository) =>
+            repository.GetAll().Select(note => note.AsDto()));
 
         group.MapGet("/{id}", (INotesRepository repository, int id) =>
         {
@@ -24,18 +25,27 @@ public static class NotesEndpoints
                 return Results.NotFound();
             }
 
-            return Results.Ok(note);
+            return Results.Ok(note.AsDto());
         })
         .WithName(GetNoteEndpointName);
 
-        group.MapPost("/", (INotesRepository repository, Note note) =>
+        group.MapPost("/", (INotesRepository repository, CreateNoteDto noteDto) =>
         {
+            Note note = new()
+            {
+                Title = noteDto.Title,
+                Content = noteDto.Content,
+                CreatedDate = noteDto.CreatedDate,
+                ModifiedDate = DateTimeOffset.Now,
+                Category = noteDto.Category
+            };
+            note.ModifiedDate = note.ModifiedDate.AddTicks(-(note.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
             repository.Create(note);
 
             return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
         });
 
-        group.MapPut("/{id}", (INotesRepository repository, int id, Note updatedNote) =>
+        group.MapPut("/{id}", (INotesRepository repository, int id, UpdateNoteDto updatedNoteDto) =>
         {
             Note? existingNote = repository.Get(id);
 
@@ -45,11 +55,9 @@ public static class NotesEndpoints
             }
 
 
-            existingNote.Title = updatedNote.Title;
-            existingNote.Content = updatedNote.Content;
-            existingNote.Category = updatedNote.Category;
-
-
+            existingNote.Title = updatedNoteDto.Title;
+            existingNote.Content = updatedNoteDto.Content;
+            existingNote.Category = updatedNoteDto.Category;
             existingNote.ModifiedDate = DateTime.Now;
             existingNote.ModifiedDate = existingNote.ModifiedDate.AddTicks(-(existingNote.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
 
@@ -57,7 +65,6 @@ public static class NotesEndpoints
 
             return Results.NoContent();
         });
-
 
 
         group.MapDelete("/{id}", (INotesRepository repository, int id) =>
@@ -68,7 +75,6 @@ public static class NotesEndpoints
             {
                 repository.Delete(id);
             }
-
 
             return Results.NoContent();
         });
