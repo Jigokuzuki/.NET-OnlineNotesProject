@@ -1,13 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using OnlineNotes.Api.Data;
 using OnlineNotes.Api.Endpoints;
-using OnlineNotes.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<INotesRepository, InMemNotesRepository>();
-
-var conString = builder.Configuration.GetConnectionString("OnlineNotesContext");
-builder.Services.AddSqlServer<OnlineNotesContext>(conString);
+builder.Services.AddRepo(builder.Configuration);
 
 var app = builder.Build();
 
