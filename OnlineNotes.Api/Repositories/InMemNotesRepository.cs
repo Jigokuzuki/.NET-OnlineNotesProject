@@ -27,31 +27,37 @@ public class InMemNotesRepository : INotesRepository
         }
     };
 
-    public IEnumerable<Note> GetAll()
+    public async Task<IEnumerable<Note>> GetAllAsync()
     {
-        return notes;
+        return await Task.FromResult(notes);
     }
 
-    public Note? Get(int id)
+    public async Task<Note?> GetAsync(int id)
     {
-        return notes.Find(note => note.Id == id);
+        return await Task.FromResult(notes.Find(note => note.Id == id));
     }
 
-    public void Create(Note note)
+    public async Task CreateAsync(Note note)
     {
         note.Id = notes.Max(note => note.Id) + 1;
         notes.Add(note);
+
+        await Task.CompletedTask;
     }
 
-    public void Update(Note updatedNote)
+    public async Task UpdateAsync(Note updatedNote)
     {
         var index = notes.FindIndex(note => note.Id == updatedNote.Id);
         notes[index] = updatedNote;
+
+        await Task.CompletedTask;
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
         var index = notes.FindIndex(note => note.Id == id);
         notes.RemoveAt(index);
+
+        await Task.CompletedTask;
     }
 }

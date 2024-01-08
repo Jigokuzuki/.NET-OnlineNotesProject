@@ -4,9 +4,9 @@ namespace OnlineNotes.Api.Repositories;
 
 public interface INotesRepository
 {
-    void Create(Note note);
-    void Delete(int id);
-    Note? Get(int id);
-    IEnumerable<Note> GetAll();
-    void Update(Note updatedNote);
+    Task CreateAsync(Note note);
+    Task DeleteAsync(int id);
+    Task<Note?> GetAsync(int id);
+    Task<IEnumerable<Note>> GetAllAsync();
+    Task UpdateAsync(Note updatedNote);
 }

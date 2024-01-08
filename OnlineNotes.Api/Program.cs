@@ -6,7 +6,7 @@ builder.Services.AddRepo(builder.Configuration);
 
 var app = builder.Build();
 
-app.Services.InitalizeDb();
+await app.Services.InitalizeDbAsync();
 
 app.MapNotesEndpoints();
 

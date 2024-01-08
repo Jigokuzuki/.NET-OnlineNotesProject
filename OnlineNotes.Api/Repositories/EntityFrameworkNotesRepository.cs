@@ -14,30 +14,30 @@ public class EntityFrameworkNotesRepository : INotesRepository
         this.dbContext = dbContext;
     }
 
-    public IEnumerable<Note> GetAll()
+    public async Task<IEnumerable<Note>> GetAllAsync()
     {
-        return dbContext.Notes.AsNoTracking().ToList();
+        return await dbContext.Notes.AsNoTracking().ToListAsync();
     }
 
-    public Note? Get(int id)
+    public async Task<Note?> GetAsync(int id)
     {
-        return dbContext.Notes.Find(id);
+        return await dbContext.Notes.FindAsync(id);
     }
 
-    public void Create(Note note)
+    public async Task CreateAsync(Note note)
     {
         dbContext.Notes.Add(note);
-        dbContext.SaveChanges();
+        await dbContext.SaveChangesAsync();
     }
 
-    public void Update(Note updatedNote)
+    public async Task UpdateAsync(Note updatedNote)
     {
         dbContext.Update(updatedNote);
-        dbContext.SaveChanges();
+        await dbContext.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        dbContext.Notes.Where(note => note.Id == id).ExecuteDelete();
+        await dbContext.Notes.Where(note => note.Id == id).ExecuteDeleteAsync();
     }
 }
