@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "b4k1jbUNYTARPCmUYM9SAmBDG3+rnrOA1E/Mkc5FDsipPDbp03KMBzl3vVVr4rJkbgqXHJe7Geag1XSctlBWJg==",
+  "dgSpecHash": "v/FTOuKdaHfPfTLzmvrLtpVLhOufG170/dMKiP/2v96NTJeYBFSAyL8S0ZNXo7W5wCkp7/ufEdhrLVQtXxpaJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
+  "projectFilePath": "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Maciek\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
-    "C:\\Users\\Maciek\\.nuget\\packages\\minimalapis.extensions\\0.11.0\\minimalapis.extensions.0.11.0.nupkg.sha512",
-    "C:\\Users\\Maciek\\.nuget\\packages\\minivalidation\\0.8.0\\minivalidation.0.8.0.nupkg.sha512"
+    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\Maciej\\.nuget\\packages\\minimalapis.extensions\\0.11.0\\minimalapis.extensions.0.11.0.nupkg.sha512",
+    "C:\\Users\\Maciej\\.nuget\\packages\\minivalidation\\0.8.0\\minivalidation.0.8.0.nupkg.sha512"
   ],
   "logs": []
 }

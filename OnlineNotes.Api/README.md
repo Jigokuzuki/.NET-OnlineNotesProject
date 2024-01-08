@@ -10,3 +10,4 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_password" -p 1433:1433 -
 $sa_password = "Admin123!"
 dotnet user-secrets set "ConnectionStrings:OnlineNotesContext" "Server=localhost; Database=OnlineNotes; User Id = sa; Password=$sa_password; TrustServerCertificate=True"
 ```
+sss
