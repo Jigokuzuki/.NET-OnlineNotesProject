@@ -10,3 +10,18 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_password" -p 1433:1433 -
 $sa_password = "Admin123!"
 dotnet user-secrets set "ConnectionStrings:OnlineNotesContext" "Server=localhost; Database=OnlineNotes; User Id = sa; Password=$sa_password; TrustServerCertificate=True"
 ```
+
+
+```sql
+USE master;
+GO
+
+-- Set the database to single-user mode
+ALTER DATABASE OnlineNotes
+SET SINGLE_USER
+WITH ROLLBACK IMMEDIATE;
+GO
+
+-- Drop the database
+DROP DATABASE OnlineNotes;
+```
