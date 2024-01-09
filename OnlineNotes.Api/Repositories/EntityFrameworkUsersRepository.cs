@@ -40,4 +40,9 @@ public class EntityFrameworkUsersRepository : IUsersRepository
     {
         await dbContext.Users.Where(user => user.Id == id).ExecuteDeleteAsync();
     }
+
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        return await dbContext.Users.FindAsync(email);
+    }
 }
