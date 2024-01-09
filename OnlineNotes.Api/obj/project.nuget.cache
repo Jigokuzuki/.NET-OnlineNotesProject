@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3fhtcBrAPKEXEKNSkcRIZQkQbcO+U6k/jBxzNLDF9+lJgJdXndadLcfF0VYYq0aBxcg821KEpjzwMgi3TjumcQ==",
+  "dgSpecHash": "5mXHhNZgpyXk5hTob4FQRZILslWzeRryg+k7uq4kwjayg/k8dj2Cy0ylO0p5NDk6HjGkKVUNs8CbLQ6k4y+NEQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
   "expectedPackageFiles": [
@@ -72,11 +72,7 @@
     "C:\\Users\\Maciej\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\Maciej\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Maciej\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Maciej\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+    "C:\\Users\\Maciej\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
