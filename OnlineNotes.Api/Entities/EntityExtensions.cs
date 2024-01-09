@@ -17,4 +17,17 @@ public static class EntityExtensions
             note.Color
         );
     }
+
+    public static UserDto AsDto(this User user)
+    {
+        return new UserDto(
+            user.Id,
+            user.FirstName,
+            user.Surname,
+            user.Email,
+            user.Password,
+            user.Avatar,
+            user.RegisterDate
+        );
+    }
 }

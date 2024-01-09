@@ -16,14 +16,13 @@ public class User
     public required string Surname { get; set; }
 
     [Required]
-    [PasswordPropertyText]
-    public required string Password { get; set; }
-
-    [Required]
     [EmailAddress]
     public required string Email { get; set; }
 
     [Required]
+    [PasswordPropertyText]
+    public required string Password { get; set; }
+
     [Url]
     public required string Avatar { get; set; }
 

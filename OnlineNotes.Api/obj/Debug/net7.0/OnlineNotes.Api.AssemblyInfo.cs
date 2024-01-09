@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineNotes.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49c97fc3dbe15067457471d4a3a1eba8b24f1410")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c502c12a2a7340dc5583bdc1b8deef602bceed8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineNotes.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineNotes.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

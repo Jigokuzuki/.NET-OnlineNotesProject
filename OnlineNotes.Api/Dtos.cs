@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineNotes.Api.Dtos;
@@ -20,7 +21,7 @@ public record CreateNoteDto(
     DateTimeOffset ModifiedDate,
     [Required][StringLength(20)] string Category,
     [Required] bool IsFavorite,
-    [Required] [StringLength(20)] string Color
+    [Required][StringLength(20)] string Color
 );
 
 public record UpdateNoteDto(
@@ -30,5 +31,34 @@ public record UpdateNoteDto(
     DateTimeOffset ModifiedDate,
     [Required][StringLength(20)] string Category,
     [Required] bool IsFavorite,
-    [Required] [StringLength(20)] string Color
+    [Required][StringLength(20)] string Color
+);
+
+
+public record UserDto(
+    int Id,
+    string FirstName,
+    string Surname,
+    string Email,
+    string Password,
+    string Avatar,
+    DateTimeOffset RegisterDate
+);
+
+public record CreateUserDto(
+    [Required][StringLength(20)] string FirstName,
+    [Required][StringLength(20)] string Surname,
+    [Required][EmailAddress] string Email,
+    [Required][PasswordPropertyText] string Password,
+    [Url] string Avatar,
+    DateTimeOffset RegisterDate
+);
+
+public record UpdateUserDto(
+    [Required][StringLength(20)] string FirstName,
+    [Required][StringLength(20)] string Surname,
+    [Required][EmailAddress] string Email,
+    [Required][PasswordPropertyText] string Password,
+    [Url] string Avatar,
+    DateTimeOffset RegisterDate
 );
