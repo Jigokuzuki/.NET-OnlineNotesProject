@@ -12,7 +12,9 @@ public static class EntityExtensions
             note.Content,
             note.CreatedDate,
             note.ModifiedDate,
-            note.Category
+            note.Category,
+            note.IsFavorite,
+            note.Color
         );
     }
 }

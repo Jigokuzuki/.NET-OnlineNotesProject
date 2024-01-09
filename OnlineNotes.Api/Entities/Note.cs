@@ -18,4 +18,11 @@ public class Note
     [Required]
     [StringLength(20)]
     public required string Category { get; set; }
+
+    [Required]
+    public required bool IsFavorite { get; set; }
+
+    [Required]
+    [StringLength(20)]
+    public required string Color { get; set; }
 }

@@ -13,7 +13,9 @@ public class InMemNotesRepository : INotesRepository
             Content = "Testing notes",
             CreatedDate = new DateTimeOffset(2020, 12, 23, 22, 11, 0, TimeSpan.FromHours(1)),
             ModifiedDate = new DateTimeOffset(2023, 12, 23, 22, 11, 0, TimeSpan.FromHours(1)),
-            Category = "School"
+            Category = "School",
+            IsFavorite = true,
+            Color = "red"
         },
 
             new Note()
@@ -23,7 +25,9 @@ public class InMemNotesRepository : INotesRepository
             Content = "Testing notes part2",
             CreatedDate = new DateTimeOffset(2020, 1, 1, 1, 1, 0, TimeSpan.FromHours(1)),
             ModifiedDate = new DateTimeOffset(2023, 11, 11, 11, 11, 0, TimeSpan.FromHours(1)),
-            Category = "Home"
+            Category = "Home",
+            IsFavorite = false,
+            Color = "red"
         }
     };
 

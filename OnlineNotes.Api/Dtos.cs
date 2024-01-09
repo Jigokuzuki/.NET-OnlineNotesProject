@@ -8,7 +8,9 @@ public record NoteDto(
     string Content,
     DateTimeOffset CreatedDate,
     DateTimeOffset ModifiedDate,
-    string Category
+    string Category,
+    bool IsFavorite,
+    string Color
 );
 
 public record CreateNoteDto(
@@ -16,7 +18,9 @@ public record CreateNoteDto(
     [Required] string Content,
     DateTimeOffset CreatedDate,
     DateTimeOffset ModifiedDate,
-    [Required][StringLength(20)] string Category
+    [Required][StringLength(20)] string Category,
+    [Required] bool IsFavorite,
+    [Required] [StringLength(20)] string Color
 );
 
 public record UpdateNoteDto(
@@ -24,5 +28,7 @@ public record UpdateNoteDto(
     [Required] string Content,
     DateTimeOffset CreatedDate,
     DateTimeOffset ModifiedDate,
-    [Required][StringLength(20)] string Category
+    [Required][StringLength(20)] string Category,
+    [Required] bool IsFavorite,
+    [Required] [StringLength(20)] string Color
 );

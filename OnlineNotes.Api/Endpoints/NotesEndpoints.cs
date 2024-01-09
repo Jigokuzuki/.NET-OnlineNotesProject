@@ -37,7 +37,10 @@ public static class NotesEndpoints
                 Content = noteDto.Content,
                 CreatedDate = noteDto.CreatedDate,
                 ModifiedDate = DateTimeOffset.Now,
-                Category = noteDto.Category
+                Category = noteDto.Category,
+                IsFavorite = noteDto.IsFavorite,
+                Color = noteDto.Color
+
             };
             note.ModifiedDate = note.ModifiedDate.AddTicks(-(note.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
             await repository.CreateAsync(note);
@@ -60,6 +63,9 @@ public static class NotesEndpoints
             existingNote.Category = updatedNoteDto.Category;
             existingNote.ModifiedDate = DateTime.Now;
             existingNote.ModifiedDate = existingNote.ModifiedDate.AddTicks(-(existingNote.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
+            existingNote.IsFavorite = updatedNoteDto.IsFavorite;
+            existingNote.Color = updatedNoteDto.Color;
+
 
             await repository.UpdateAsync(existingNote);
 
