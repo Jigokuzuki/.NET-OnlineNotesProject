@@ -1,0 +1,25 @@
+User
+	UserID
+	FirstName
+	Surname
+	email
+	password
+	RegisterDate
+	AvatarURL
+
+
+Notes
+	NoteID
+	Title
+	Content
+	Genre
+	ModifiedDate
+	CreateDate
+	IsFavorite
+	Color
+
+
+UserNotes
+	ID
+	UserID
+	NoteID
