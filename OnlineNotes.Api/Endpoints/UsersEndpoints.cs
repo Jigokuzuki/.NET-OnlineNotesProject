@@ -1,3 +1,4 @@
+using OnlineNotes.Api.Authorization;
 using OnlineNotes.Api.Dtos;
 using OnlineNotes.Api.Entities;
 using OnlineNotes.Api.Repositories;
@@ -13,7 +14,7 @@ public static class UsersEndpoints
         var group = routes.MapGroup("/users").WithParameterValidation();
 
         group.MapGet("/", async (IUsersRepository repository) =>
-            (await repository.GetAllAsync()).Select(user => user.AsDto())).RequireAuthorization();
+            (await repository.GetAllAsync()).Select(user => user.AsDto())).RequireAuthorization(Policies.ReadAccess);
 
         group.MapGet("/{id}", async (IUsersRepository repository, int id) =>
         {
@@ -26,7 +27,7 @@ public static class UsersEndpoints
 
             return Results.Ok(user.AsDto());
         })
-        .WithName(GetUserEndpointName).RequireAuthorization();
+        .WithName(GetUserEndpointName).RequireAuthorization(Policies.ReadAccess);
 
         group.MapPost("/", async (IUsersRepository repository, CreateUserDto userDto) =>
         {
@@ -44,7 +45,7 @@ public static class UsersEndpoints
             await repository.CreateAsync(user);
 
             return Results.CreatedAtRoute(GetUserEndpointName, new { id = user.Id }, user);
-        }).RequireAuthorization();
+        }).RequireAuthorization(Policies.WriteAccess);
 
         group.MapPut("/{id}", async (IUsersRepository repository, int id, UpdateUserDto updateUserDto) =>
         {
@@ -66,7 +67,7 @@ public static class UsersEndpoints
             await repository.UpdateAsync(existingUser);
 
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Policies.WriteAccess);
 
 
         group.MapDelete("/{id}", async (IUsersRepository repository, int id) =>
@@ -79,7 +80,7 @@ public static class UsersEndpoints
             }
 
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Policies.WriteAccess);
 
         return group;
     }
