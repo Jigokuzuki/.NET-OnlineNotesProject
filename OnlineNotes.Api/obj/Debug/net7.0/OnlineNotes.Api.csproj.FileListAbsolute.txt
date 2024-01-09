@@ -148,3 +148,4 @@ C:\Users\Maciej\dotnet\OnlineNotes.Api\obj\Debug\net7.0\scopedcss\bundle\OnlineN
 C:\Users\Maciej\dotnet\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.csproj.CopyComplete
 C:\Users\Maciej\dotnet\OnlineNotes.Api\obj\Debug\net7.0\OnlineNotes.Api.genruntimeconfig.cache
 C:\Users\Maciej\dotnet\OnlineNotes.Api\obj\Debug\net7.0\ref\OnlineNotes.Api.dll
+C:\Users\Maciek\Desktop\Studia\5semestr\dotnetprojekt\OnlineNotes.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

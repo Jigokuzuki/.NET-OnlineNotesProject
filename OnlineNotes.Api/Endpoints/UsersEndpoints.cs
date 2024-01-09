@@ -13,7 +13,7 @@ public static class UsersEndpoints
         var group = routes.MapGroup("/users").WithParameterValidation();
 
         group.MapGet("/", async (IUsersRepository repository) =>
-            (await repository.GetAllAsync()).Select(user => user.AsDto()));
+            (await repository.GetAllAsync()).Select(user => user.AsDto())).RequireAuthorization();
 
         group.MapGet("/{id}", async (IUsersRepository repository, int id) =>
         {
@@ -26,7 +26,7 @@ public static class UsersEndpoints
 
             return Results.Ok(user.AsDto());
         })
-        .WithName(GetUserEndpointName);
+        .WithName(GetUserEndpointName).RequireAuthorization();
 
         group.MapPost("/", async (IUsersRepository repository, CreateUserDto userDto) =>
         {
@@ -44,7 +44,7 @@ public static class UsersEndpoints
             await repository.CreateAsync(user);
 
             return Results.CreatedAtRoute(GetUserEndpointName, new { id = user.Id }, user);
-        });
+        }).RequireAuthorization();
 
         group.MapPut("/{id}", async (IUsersRepository repository, int id, UpdateUserDto updateUserDto) =>
         {
@@ -56,17 +56,17 @@ public static class UsersEndpoints
             }
 
 
-            existingUser.FirstName = existingUser.FirstName;
-            existingUser.Surname = existingUser.Surname;
-            existingUser.Email = existingUser.Email;
-            existingUser.Password = existingUser.Password;
-            existingUser.Avatar = existingUser.Avatar;
+            existingUser.FirstName = updateUserDto.FirstName;
+            existingUser.Surname = updateUserDto.Surname;
+            existingUser.Email = updateUserDto.Email;
+            existingUser.Password = updateUserDto.Password;
+            existingUser.Avatar = updateUserDto.Avatar;
 
 
             await repository.UpdateAsync(existingUser);
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
 
         group.MapDelete("/{id}", async (IUsersRepository repository, int id) =>
@@ -79,7 +79,7 @@ public static class UsersEndpoints
             }
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         return group;
     }
