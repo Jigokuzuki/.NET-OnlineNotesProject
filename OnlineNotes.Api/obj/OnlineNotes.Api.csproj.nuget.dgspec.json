@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj": {}
+    "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj": {
+    "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
         "projectName": "OnlineNotes.Api",
-        "projectPath": "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
-        "packagesPath": "C:\\Users\\Maciej\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Maciej\\dotnet\\OnlineNotes.Api\\obj\\",
+        "projectPath": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
+        "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Maciej\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
