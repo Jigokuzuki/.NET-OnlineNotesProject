@@ -3,6 +3,7 @@ using OnlineNotes.Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRepo(builder.Configuration);
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 
