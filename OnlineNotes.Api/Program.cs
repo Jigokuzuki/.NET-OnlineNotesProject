@@ -1,12 +1,12 @@
+using OnlineNotes.Api.Data;
 using OnlineNotes.Api.Endpoints;
-using OnlineNotes.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<INotesRepository, InMemNotesRepository>();
-
-var conString = builder.Configuration.GetConnectionString("OnlineNotesContext");
+builder.Services.AddRepo(builder.Configuration);
 
 var app = builder.Build();
+
+await app.Services.InitalizeDbAsync();
 
 app.MapNotesEndpoints();
 

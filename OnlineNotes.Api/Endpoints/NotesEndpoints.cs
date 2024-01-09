@@ -13,12 +13,12 @@ public static class NotesEndpoints
         var group = routes.MapGroup("/notes")
                         .WithParameterValidation();
 
-        group.MapGet("/", (INotesRepository repository) =>
-            repository.GetAll().Select(note => note.AsDto()));
+        group.MapGet("/", async (INotesRepository repository) =>
+            (await repository.GetAllAsync()).Select(note => note.AsDto()));
 
-        group.MapGet("/{id}", (INotesRepository repository, int id) =>
+        group.MapGet("/{id}", async (INotesRepository repository, int id) =>
         {
-            Note? note = repository.Get(id);
+            Note? note = await repository.GetAsync(id);
 
             if (note is null)
             {
@@ -29,7 +29,7 @@ public static class NotesEndpoints
         })
         .WithName(GetNoteEndpointName);
 
-        group.MapPost("/", (INotesRepository repository, CreateNoteDto noteDto) =>
+        group.MapPost("/", async (INotesRepository repository, CreateNoteDto noteDto) =>
         {
             Note note = new()
             {
@@ -40,14 +40,14 @@ public static class NotesEndpoints
                 Category = noteDto.Category
             };
             note.ModifiedDate = note.ModifiedDate.AddTicks(-(note.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
-            repository.Create(note);
+            await repository.CreateAsync(note);
 
             return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
         });
 
-        group.MapPut("/{id}", (INotesRepository repository, int id, UpdateNoteDto updatedNoteDto) =>
+        group.MapPut("/{id}", async (INotesRepository repository, int id, UpdateNoteDto updatedNoteDto) =>
         {
-            Note? existingNote = repository.Get(id);
+            Note? existingNote = await repository.GetAsync(id);
 
             if (existingNote is null)
             {
@@ -61,19 +61,19 @@ public static class NotesEndpoints
             existingNote.ModifiedDate = DateTime.Now;
             existingNote.ModifiedDate = existingNote.ModifiedDate.AddTicks(-(existingNote.ModifiedDate.Ticks % TimeSpan.TicksPerSecond));
 
-            repository.Update(existingNote);
+            await repository.UpdateAsync(existingNote);
 
             return Results.NoContent();
         });
 
 
-        group.MapDelete("/{id}", (INotesRepository repository, int id) =>
+        group.MapDelete("/{id}", async (INotesRepository repository, int id) =>
         {
-            Note? note = repository.Get(id);
+            Note? note = await repository.GetAsync(id);
 
             if (note is not null)
             {
-                repository.Delete(id);
+                await repository.DeleteAsync(id);
             }
 
             return Results.NoContent();
