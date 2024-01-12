@@ -7,6 +7,7 @@ builder.Services.AddRepo(builder.Configuration);
 builder.Services.AddRepo2(builder.Configuration);
 builder.Services.AddRepo3(builder.Configuration);
 builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddRazorPages();
 
 builder.Services.AddAuthorization(option =>
 {
@@ -22,5 +23,6 @@ await app.Services.InitalizeDbAsync();
 app.MapNotesEndpoints();
 app.MapUsersEndpoints();
 app.MapUserNotesEndpoints();
+app.MapRazorPages();
 
 app.Run();
