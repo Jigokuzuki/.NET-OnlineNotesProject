@@ -43,6 +43,6 @@ public class EntityFrameworkUsersRepository : IUsersRepository
 
     public async Task<User?> GetUserByEmail(string email)
     {
-        return await dbContext.Users.FindAsync(email);
+        return await dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
     }
 }

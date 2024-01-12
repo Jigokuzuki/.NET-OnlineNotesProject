@@ -16,11 +16,11 @@ public class User
     public required string Surname { get; set; }
 
     [Required]
-    [EmailAddress]
+    [StringLength(20)]
     public required string Email { get; set; }
 
     [Required]
-    [PasswordPropertyText]
+    [StringLength(20)]
     public required string Password { get; set; }
 
     [Url]

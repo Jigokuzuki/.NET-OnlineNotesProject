@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using OnlineNotes.Api.Data;
 using OnlineNotes.Api.Entities;
 

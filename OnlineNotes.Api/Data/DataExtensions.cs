@@ -27,4 +27,12 @@ public static class DataExtensions
 
         return services;
     }
+
+    public static IServiceCollection AddRepo3(this IServiceCollection services, IConfiguration configuration)
+    {
+        var conString = configuration.GetConnectionString("OnlineNotesContext");
+        services.AddSqlServer<OnlineNotesContext>(conString).AddScoped<IUserNotesRepository, EntityFrameworkUserNotesRepository>();
+
+        return services;
+    }
 }

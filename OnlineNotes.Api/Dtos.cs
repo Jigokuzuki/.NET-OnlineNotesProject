@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineNotes.Api.Dtos;
 
@@ -48,8 +49,8 @@ public record UserDto(
 public record CreateUserDto(
     [Required][StringLength(20)] string FirstName,
     [Required][StringLength(20)] string Surname,
-    [Required][EmailAddress] string Email,
-    [Required][PasswordPropertyText] string Password,
+    [Required][StringLength(20)] string Email,
+    [Required][StringLength(20)] string Password,
     [Url] string Avatar,
     DateTimeOffset RegisterDate
 );
@@ -57,8 +58,25 @@ public record CreateUserDto(
 public record UpdateUserDto(
     [Required][StringLength(20)] string FirstName,
     [Required][StringLength(20)] string Surname,
-    [Required][EmailAddress] string Email,
-    [Required][PasswordPropertyText] string Password,
+    [Required][StringLength(20)] string Email,
+    [Required][StringLength(20)] string Password,
     [Url] string Avatar,
     DateTimeOffset RegisterDate
+);
+
+
+public record UserNotesDto(
+    int Id,
+    int UserId,
+    int NoteId
+);
+
+public record CreateUserNotesDto(
+    int UserId,
+    int NoteId
+);
+
+public record UpdateUserNotesDto(
+    int UserId,
+    int NoteId
 );

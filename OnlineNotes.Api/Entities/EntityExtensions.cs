@@ -30,4 +30,13 @@ public static class EntityExtensions
             user.RegisterDate
         );
     }
+
+    public static UserNotesDto AsDto(this UserNotes usernotes)
+    {
+        return new UserNotesDto(
+            usernotes.Id,
+            usernotes.UserId,
+            usernotes.NoteId
+        );
+    }
 }

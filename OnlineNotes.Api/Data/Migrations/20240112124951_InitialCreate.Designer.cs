@@ -12,7 +12,7 @@ using OnlineNotes.Api.Data;
 namespace OnlineNotes.Api.Data.Migrations
 {
     [DbContext(typeof(OnlineNotesContext))]
-    [Migration("20240109160130_InitialCreate")]
+    [Migration("20240112124951_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -80,7 +80,8 @@ namespace OnlineNotes.Api.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -89,7 +90,8 @@ namespace OnlineNotes.Api.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTimeOffset>("RegisterDate")
                         .HasColumnType("datetimeoffset");
@@ -102,6 +104,25 @@ namespace OnlineNotes.Api.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("OnlineNotes.Api.Entities.UserNotes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("NoteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserNotes");
                 });
 #pragma warning restore 612, 618
         }

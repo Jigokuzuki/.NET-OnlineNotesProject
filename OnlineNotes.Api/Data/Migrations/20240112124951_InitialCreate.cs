@@ -31,6 +31,20 @@ namespace OnlineNotes.Api.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserNotes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NoteId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserNotes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -38,8 +52,8 @@ namespace OnlineNotes.Api.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RegisterDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
@@ -54,6 +68,9 @@ namespace OnlineNotes.Api.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Notes");
+
+            migrationBuilder.DropTable(
+                name: "UserNotes");
 
             migrationBuilder.DropTable(
                 name: "Users");
