@@ -23,8 +23,5 @@ public class User
     [StringLength(20)]
     public required string Password { get; set; }
 
-    [Url]
-    public required string Avatar { get; set; }
-
     public DateTimeOffset RegisterDate { get; set; }
 }

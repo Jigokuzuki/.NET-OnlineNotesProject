@@ -59,15 +59,12 @@ public static class UsersEndpoints
                 return Results.Conflict(new { message = "Invalid Password! Password must be at least 8 characters long and contain at least one special character." });
             }
 
-
-
             User user = new()
             {
                 FirstName = userDto.FirstName,
                 Surname = userDto.Surname,
                 Email = userDto.Email,
                 Password = userDto.Password,
-                Avatar = userDto.Avatar,
                 RegisterDate = DateTimeOffset.Now
             };
 
@@ -75,7 +72,7 @@ public static class UsersEndpoints
             await repository.CreateAsync(user);
 
             return Results.CreatedAtRoute(GetUserEndpointName, new { id = user.Id }, user);
-        }).RequireAuthorization(Policies.WriteAccess);
+        });//.RequireAuthorization(Policies.WriteAccess);
 
         group.MapPut("/{id}", async (IUsersRepository repository, int id, UpdateUserDto updateUserDto) =>
         {
@@ -91,7 +88,6 @@ public static class UsersEndpoints
             existingUser.Surname = updateUserDto.Surname;
             existingUser.Email = updateUserDto.Email;
             existingUser.Password = updateUserDto.Password;
-            existingUser.Avatar = updateUserDto.Avatar;
 
 
             await repository.UpdateAsync(existingUser);
@@ -112,6 +108,32 @@ public static class UsersEndpoints
             return Results.NoContent();
         }).RequireAuthorization(Policies.WriteAccess);
 
+        group.MapPost("/login", async (IUsersRepository repository, LoginUserDto userDto) =>
+                {
+
+                    var user = await repository.GetUserByEmail(userDto.Email);
+
+                    if (string.IsNullOrEmpty(userDto.Email) || !userDto.Email.Contains("@"))
+                    {
+                        return Results.Conflict(new { message = "Invalid Email!" });
+                    }
+
+                    if (string.IsNullOrEmpty(userDto.Password) || userDto.Password.Length < 8 || !userDto.Password.Any(c => !char.IsLetterOrDigit(c)))
+                    {
+                        return Results.Conflict(new { message = "Invalid Password! Password must be at least 8 characters long and contain at least one special character." });
+                    }
+
+                    if (user != null && user.Password == userDto.Password)
+                    {
+                        return Results.Ok(new { message = "Login successful!" });
+                    }
+
+                    return Results.BadRequest();
+                });//.RequireAuthorization(Policies.WriteAccess);
+
+
+
         return group;
     }
+
 }

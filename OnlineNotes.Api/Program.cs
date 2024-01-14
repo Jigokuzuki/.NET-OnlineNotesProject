@@ -16,9 +16,16 @@ builder.Services.AddAuthorization(option =>
 
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder => builder.WithOrigins("http://localhost:5238").AllowAnyMethod().AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 await app.Services.InitalizeDbAsync();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.MapNotesEndpoints();
 app.MapUsersEndpoints();

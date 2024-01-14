@@ -26,7 +26,6 @@ public static class EntityExtensions
             user.Surname,
             user.Email,
             user.Password,
-            user.Avatar,
             user.RegisterDate
         );
     }

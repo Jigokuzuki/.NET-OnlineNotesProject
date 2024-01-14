@@ -42,8 +42,12 @@ public record UserDto(
     string Surname,
     string Email,
     string Password,
-    string Avatar,
     DateTimeOffset RegisterDate
+);
+
+public record LoginUserDto(
+    string Email,
+    string Password
 );
 
 public record CreateUserDto(
@@ -51,7 +55,6 @@ public record CreateUserDto(
     [Required][StringLength(20)] string Surname,
     [Required][StringLength(20)] string Email,
     [Required][StringLength(20)] string Password,
-    [Url] string Avatar,
     DateTimeOffset RegisterDate
 );
 
@@ -60,7 +63,6 @@ public record UpdateUserDto(
     [Required][StringLength(20)] string Surname,
     [Required][StringLength(20)] string Email,
     [Required][StringLength(20)] string Password,
-    [Url] string Avatar,
     DateTimeOffset RegisterDate
 );
 
