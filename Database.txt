@@ -5,7 +5,6 @@ User
 	email
 	password
 	RegisterDate
-	AvatarURL
 
 
 Notes
