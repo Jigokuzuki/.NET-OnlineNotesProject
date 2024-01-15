@@ -109,29 +109,29 @@ public static class UsersEndpoints
         }).RequireAuthorization(Policies.WriteAccess);
 
         group.MapPost("/login", async (IUsersRepository repository, LoginUserDto userDto) =>
-                {
+        {
+            var user = await repository.GetUserByEmail(userDto.Email);
 
-                    var user = await repository.GetUserByEmail(userDto.Email);
+            if (string.IsNullOrEmpty(userDto.Email) || !userDto.Email.Contains("@"))
+            {
+                return Results.Conflict(new { message = "Invalid Email!" });
+            }
 
-                    if (string.IsNullOrEmpty(userDto.Email) || !userDto.Email.Contains("@"))
-                    {
-                        return Results.Conflict(new { message = "Invalid Email!" });
-                    }
+            if (string.IsNullOrEmpty(userDto.Password) || userDto.Password.Length < 8 || !userDto.Password.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                return Results.Conflict(new { message = "Invalid Password! Password must be at least 8 characters long and contain at least one special character." });
+            }
 
-                    if (string.IsNullOrEmpty(userDto.Password) || userDto.Password.Length < 8 || !userDto.Password.Any(c => !char.IsLetterOrDigit(c)))
-                    {
-                        return Results.Conflict(new { message = "Invalid Password! Password must be at least 8 characters long and contain at least one special character." });
-                    }
+            if (user != null && user.Password == userDto.Password)
+            {
+                // Zalogowanie udane, zwróć ID użytkownika
+                return Results.Ok(new { message = "Login successful!", userId = user.Id });
+            }
 
-                    if (user != null && user.Password == userDto.Password)
-                    {
-                        return Results.Ok(new { message = "Login successful!" });
-                    }
+            return Results.BadRequest();
+        });
 
-                    return Results.BadRequest();
-                });//.RequireAuthorization(Policies.WriteAccess);
-
-
+        //.RequireAuthorization(Policies.WriteAccess);
 
         return group;
     }

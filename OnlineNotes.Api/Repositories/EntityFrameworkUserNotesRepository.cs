@@ -18,6 +18,11 @@ public class EntityFrameworkUserNotesRepository : IUserNotesRepository
         return await dbContext.UserNotes.AsNoTracking().ToListAsync();
     }
 
+    public async Task<IEnumerable<UserNotes>> GetByUserIdAsync(int userId)
+    {
+        return await dbContext.UserNotes.Where(n => n.UserId == userId).ToListAsync();
+    }
+
     public async Task<UserNotes?> GetAsync(int id)
     {
         return await dbContext.UserNotes.FindAsync(id);

@@ -12,7 +12,7 @@ using OnlineNotes.Api.Data;
 namespace OnlineNotes.Api.Data.Migrations
 {
     [DbContext(typeof(OnlineNotesContext))]
-    [Migration("20240114121244_InitialCreate")]
+    [Migration("20240115160440_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

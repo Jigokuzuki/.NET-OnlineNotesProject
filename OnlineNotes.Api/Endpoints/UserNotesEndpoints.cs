@@ -28,6 +28,20 @@ public static class UserNotesEndpoints
         })
         .WithName(GetUserNotesEndpointName);
 
+        group.MapGet("/users/{userId}", async (HttpContext context, IUserNotesRepository repository, int userId) =>
+        {
+            var userNotes = await repository.GetByUserIdAsync(userId);
+
+            if (userNotes != null)
+            {
+                await context.Response.WriteAsJsonAsync(userNotes);
+            }
+            else
+            {
+                context.Response.StatusCode = StatusCodes.Status404NotFound;
+            }
+        });
+
         group.MapPost("/", async (IUserNotesRepository repository, CreateUserNotesDto userNotesDto) =>
         {
             UserNotes userNotes = new()

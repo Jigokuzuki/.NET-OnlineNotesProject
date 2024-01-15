@@ -8,5 +8,7 @@ public interface IUserNotesRepository
     Task DeleteAsync(int id);
     Task<UserNotes?> GetAsync(int id);
     Task<IEnumerable<UserNotes>> GetAllAsync();
+    Task<IEnumerable<UserNotes>> GetByUserIdAsync(int userId);
     Task UpdateAsync(UserNotes updatedUserNotes);
+
 }
