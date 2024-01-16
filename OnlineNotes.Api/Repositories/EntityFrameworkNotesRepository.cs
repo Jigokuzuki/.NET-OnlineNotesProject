@@ -39,4 +39,19 @@ public class EntityFrameworkNotesRepository : INotesRepository
     {
         await dbContext.Notes.Where(note => note.Id == id).ExecuteDeleteAsync();
     }
+
+    public async Task<IEnumerable<Note>> GetNotesByUserIdAsync(int userId)
+    {
+        var userNoteIds = await dbContext.UserNotes
+            .Where(userNote => userNote.UserId == userId)
+            .Select(userNote => userNote.NoteId)
+            .ToListAsync();
+
+        var userNotes = await dbContext.Notes
+            .Where(note => userNoteIds.Contains(note.Id))
+            .AsNoTracking()
+            .ToListAsync();
+
+        return userNotes;
+    }
 }

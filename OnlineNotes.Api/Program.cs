@@ -27,6 +27,8 @@ await app.Services.InitalizeDbAsync();
 
 app.UseCors("AllowSpecificOrigin");
 
+
+
 app.MapNotesEndpoints();
 app.MapUsersEndpoints();
 app.MapUserNotesEndpoints();

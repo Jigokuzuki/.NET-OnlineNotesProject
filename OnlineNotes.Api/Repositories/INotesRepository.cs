@@ -9,4 +9,5 @@ public interface INotesRepository
     Task<Note?> GetAsync(int id);
     Task<IEnumerable<Note>> GetAllAsync();
     Task UpdateAsync(Note updatedNote);
+    Task<IEnumerable<Note>> GetNotesByUserIdAsync(int userId);
 }

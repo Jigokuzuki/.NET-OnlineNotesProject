@@ -28,6 +28,19 @@ public static class NotesEndpoints
         })
         .WithName(GetNoteEndpointName);
 
+        group.MapGet("/user/{userId}", async (INotesRepository repository, int userId) =>
+        {
+            var userNotes = await repository.GetNotesByUserIdAsync(userId);
+
+            if (userNotes == null || !userNotes.Any())
+            {
+                return Results.NotFound();
+            }
+
+            return Results.Ok(userNotes.Select(note => note.AsDto()));
+        });
+
+
         group.MapPost("/", async (INotesRepository repository, CreateNoteDto noteDto) =>
         {
             if (string.IsNullOrEmpty(noteDto.Title))
