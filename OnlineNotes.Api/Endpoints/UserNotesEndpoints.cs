@@ -52,7 +52,7 @@ public static class UserNotesEndpoints
             await repository.CreateAsync(userNotes);
 
             return Results.CreatedAtRoute(GetUserNotesEndpointName, new { id = userNotes.Id }, userNotes);
-        });
+        });//.RequireAuthorization();
 
         group.MapPut("/{id}", async (IUserNotesRepository repository, int id, UpdateUserNotesDto updateUserNoteDto) =>
         {
@@ -82,7 +82,7 @@ public static class UserNotesEndpoints
             }
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         return group;
     }

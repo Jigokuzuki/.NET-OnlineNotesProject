@@ -1,3 +1,4 @@
+using OnlineNotes.Api.Authorization;
 using OnlineNotes.Api.Dtos;
 using OnlineNotes.Api.Entities;
 using OnlineNotes.Api.Repositories;
@@ -75,7 +76,9 @@ public static class NotesEndpoints
             await repository.CreateAsync(note);
 
             return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
-        });
+        });//.RequireAuthorization();
+
+
 
         group.MapPut("/{id}", async (INotesRepository repository, int id, UpdateNoteDto updateNoteDto) =>
         {
@@ -114,7 +117,7 @@ public static class NotesEndpoints
             await repository.UpdateAsync(existingNote);
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
 
         group.MapDelete("/{id}", async (INotesRepository repository, int id) =>
@@ -127,7 +130,7 @@ public static class NotesEndpoints
             }
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         return group;
     }

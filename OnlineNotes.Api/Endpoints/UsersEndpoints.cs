@@ -1,3 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using OnlineNotes.Api.Authorization;
 using OnlineNotes.Api.Dtos;
 using OnlineNotes.Api.Entities;
@@ -14,7 +18,7 @@ public static class UsersEndpoints
         var group = routes.MapGroup("/users").WithParameterValidation();
 
         group.MapGet("/", async (IUsersRepository repository) =>
-            (await repository.GetAllAsync()).Select(user => user.AsDto())).RequireAuthorization(Policies.ReadAccess);
+            (await repository.GetAllAsync()).Select(user => user.AsDto()));
 
         group.MapGet("/{id}", async (IUsersRepository repository, int id) =>
         {
@@ -27,7 +31,7 @@ public static class UsersEndpoints
 
             return Results.Ok(user.AsDto());
         })
-        .WithName(GetUserEndpointName).RequireAuthorization(Policies.ReadAccess);
+        .WithName(GetUserEndpointName);
 
         group.MapPost("/", async (IUsersRepository repository, CreateUserDto userDto) =>
         {
@@ -71,7 +75,35 @@ public static class UsersEndpoints
             user.RegisterDate = user.RegisterDate.AddTicks(-(user.RegisterDate.Ticks % TimeSpan.TicksPerSecond));
             await repository.CreateAsync(user);
 
-            return Results.CreatedAtRoute(GetUserEndpointName, new { id = user.Id }, user);
+            //token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes("JwtKey123456789012345678901234567890");
+
+            var claims = new List<Claim>
+            {
+              new Claim(ClaimTypes.Name, user.Id.ToString()),
+              new Claim("aud", "http://localhost:46707"),
+              new Claim("aud", "https://localhost:44362"),
+              new Claim("aud", "http://localhost:5209"),
+              new Claim("aud", "https://localhost:7076"),
+              new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
+              new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddHours(1)).ToUnixTimeSeconds().ToString()),
+              new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer),
+              new Claim(JwtRegisteredClaimNames.Iss, "dotnet-user-jwts")
+            };
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+
+
+            return Results.Ok(new { id = user.Id, token = tokenString });
         });//.RequireAuthorization(Policies.WriteAccess);
 
         group.MapPut("/{id}", async (IUsersRepository repository, int id, UpdateUserDto updateUserDto) =>
@@ -108,6 +140,7 @@ public static class UsersEndpoints
             return Results.NoContent();
         }).RequireAuthorization(Policies.WriteAccess);
 
+
         group.MapPost("/login", async (IUsersRepository repository, LoginUserDto userDto) =>
         {
             var user = await repository.GetUserByEmail(userDto.Email);
@@ -124,8 +157,33 @@ public static class UsersEndpoints
 
             if (user != null && user.Password == userDto.Password)
             {
-                // Zalogowanie udane, zwróć ID użytkownika
-                return Results.Ok(new { message = "Login successful!", userId = user.Id });
+                var tokenHandler = new JwtSecurityTokenHandler();
+                // hide key
+                var key = Encoding.UTF8.GetBytes("JwtKey123456789012345678901234567890");
+
+                var claims = new List<Claim>
+                {
+                  new Claim(ClaimTypes.Name, user.Id.ToString()),
+                  new Claim("aud", "http://localhost:46707"),
+                  new Claim("aud", "https://localhost:44362"),
+                  new Claim("aud", "http://localhost:5209"),
+                  new Claim("aud", "https://localhost:7076"),
+                  new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
+                  new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddHours(1)).ToUnixTimeSeconds().ToString()),
+                  new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer),
+                  new Claim(JwtRegisteredClaimNames.Iss, "dotnet-user-jwts")
+                };
+
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.UtcNow.AddHours(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                return Results.Ok(new { id = user.Id, token = tokenString });
             }
 
             return Results.BadRequest();
