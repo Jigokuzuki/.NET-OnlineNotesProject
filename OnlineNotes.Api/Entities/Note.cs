@@ -7,7 +7,7 @@ public class Note
     public int Id { get; set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(10)]
     public required string Title { get; set; }
 
     [Required]

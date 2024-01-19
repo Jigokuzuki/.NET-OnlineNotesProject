@@ -16,7 +16,7 @@ public record NoteDto(
 );
 
 public record CreateNoteDto(
-    [Required][StringLength(50)] string Title,
+    [Required][StringLength(10)] string Title,
     [Required] string Content,
     DateTimeOffset CreatedDate,
     DateTimeOffset ModifiedDate,
@@ -26,7 +26,7 @@ public record CreateNoteDto(
 );
 
 public record UpdateNoteDto(
-    [Required][StringLength(50)] string Title,
+    [Required][StringLength(10)] string Title,
     [Required] string Content,
     DateTimeOffset CreatedDate,
     DateTimeOffset ModifiedDate,
