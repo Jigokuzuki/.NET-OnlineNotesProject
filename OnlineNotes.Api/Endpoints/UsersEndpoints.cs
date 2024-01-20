@@ -145,14 +145,19 @@ public static class UsersEndpoints
         {
             var user = await repository.GetUserByEmail(userDto.Email);
 
+            if (user is null)
+            {
+                return Results.NotFound(new { message = "User not found" });
+            }
+
+            if (user.Password != userDto.Password)
+            {
+                return Results.Conflict(new { message = "Invalid password!" });
+            }
+
             if (string.IsNullOrEmpty(userDto.Email) || !userDto.Email.Contains("@"))
             {
                 return Results.Conflict(new { message = "Invalid Email!" });
-            }
-
-            if (string.IsNullOrEmpty(userDto.Password) || userDto.Password.Length < 8 || !userDto.Password.Any(c => !char.IsLetterOrDigit(c)))
-            {
-                return Results.Conflict(new { message = "Invalid Password! Password must be at least 8 characters long and contain at least one special character." });
             }
 
             if (user != null && user.Password == userDto.Password)

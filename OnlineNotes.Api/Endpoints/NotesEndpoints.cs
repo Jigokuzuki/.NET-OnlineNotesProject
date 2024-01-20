@@ -89,9 +89,9 @@ public static class NotesEndpoints
                 return Results.NotFound();
             }
 
-            if (string.IsNullOrEmpty(updateNoteDto.Title))
+            if (string.IsNullOrEmpty(updateNoteDto.Title) || updateNoteDto.Title.Length > 10)
             {
-                return Results.BadRequest(new { message = "Title cannot be empty!" });
+                return Results.BadRequest(new { message = "Title cannot be empty or longer than 10 characters!" });
             }
 
             if (string.IsNullOrEmpty(updateNoteDto.Content))
@@ -99,9 +99,9 @@ public static class NotesEndpoints
                 return Results.BadRequest(new { message = "Content cannot be empty!" });
             }
 
-            if (string.IsNullOrEmpty(updateNoteDto.Category))
+            if (string.IsNullOrEmpty(updateNoteDto.Category) || updateNoteDto.Category.Length > 20)
             {
-                return Results.BadRequest(new { message = "Category cannot be empty!" });
+                return Results.BadRequest(new { message = "Category cannot be empty or longer than 20 characters!" });
             }
 
 

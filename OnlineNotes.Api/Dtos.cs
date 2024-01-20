@@ -51,18 +51,18 @@ public record LoginUserDto(
 );
 
 public record CreateUserDto(
-    [Required][StringLength(20)] string FirstName,
-    [Required][StringLength(20)] string Surname,
-    [Required][StringLength(20)] string Email,
-    [Required][StringLength(20)] string Password,
+    [Required] string FirstName,
+    [Required] string Surname,
+    [Required] string Email,
+    [Required] string Password,
     DateTimeOffset RegisterDate
 );
 
 public record UpdateUserDto(
-    [Required][StringLength(20)] string FirstName,
-    [Required][StringLength(20)] string Surname,
-    [Required][StringLength(20)] string Email,
-    [Required][StringLength(20)] string Password,
+    [Required] string FirstName,
+    [Required] string Surname,
+    [Required] string Email,
+    [Required] string Password,
     DateTimeOffset RegisterDate
 );
 
