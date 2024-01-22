@@ -76,7 +76,7 @@ public static class NotesEndpoints
             await repository.CreateAsync(note);
 
             return Results.CreatedAtRoute(GetNoteEndpointName, new { id = note.Id }, note);
-        });//.RequireAuthorization();
+        }).RequireAuthorization();
 
 
 
@@ -117,7 +117,7 @@ public static class NotesEndpoints
             await repository.UpdateAsync(existingNote);
 
             return Results.NoContent();
-        });//.RequireAuthorization();
+        }).RequireAuthorization();
 
 
         group.MapDelete("/{id}", async (INotesRepository repository, int id) =>
@@ -130,7 +130,7 @@ public static class NotesEndpoints
             }
 
             return Results.NoContent();
-        });//.RequireAuthorization();
+        }).RequireAuthorization();
 
         return group;
     }

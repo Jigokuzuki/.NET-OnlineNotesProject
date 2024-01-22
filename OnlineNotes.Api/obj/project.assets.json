@@ -3552,24 +3552,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Maciek\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Maciej\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Maciej\\OneDrive\\Pulpit\\Projekt dotnet\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
       "projectName": "OnlineNotes.Api",
-      "projectPath": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
-      "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maciek\\Desktop\\Studia\\5semestr\\dotnetprojekt\\OnlineNotes.Api\\obj\\",
+      "projectPath": "C:\\Users\\Maciej\\OneDrive\\Pulpit\\Projekt dotnet\\dotnet\\OnlineNotes.Api\\OnlineNotes.Api.csproj",
+      "packagesPath": "C:\\Users\\Maciej\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Maciej\\OneDrive\\Pulpit\\Projekt dotnet\\dotnet\\OnlineNotes.Api\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Maciej\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3625,24 +3620,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.15, 7.0.15]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[7.0.15, 7.0.15]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.15, 7.0.15]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[7.0.15, 7.0.15]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -3651,7 +3628,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
