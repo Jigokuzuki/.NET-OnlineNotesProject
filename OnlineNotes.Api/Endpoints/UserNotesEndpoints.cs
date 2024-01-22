@@ -84,6 +84,14 @@ public static class UserNotesEndpoints
             return Results.NoContent();
         }).RequireAuthorization();
 
+
+        group.MapDelete("/{userId}/{noteId}", async (IUserNotesRepository repository, int userId, int noteId) =>
+        {
+            await repository.DeleteByNoteAndUserAsync(noteId, userId);
+            return Results.NoContent();
+        }).RequireAuthorization();
+
+
         return group;
     }
 }

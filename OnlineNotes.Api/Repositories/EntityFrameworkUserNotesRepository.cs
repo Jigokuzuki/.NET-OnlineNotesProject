@@ -44,4 +44,17 @@ public class EntityFrameworkUserNotesRepository : IUserNotesRepository
     {
         await dbContext.UserNotes.Where(userNotes => userNotes.Id == id).ExecuteDeleteAsync();
     }
+
+    public async Task DeleteByNoteAndUserAsync(int noteId, int userId)
+    {
+        var userNoteToDelete = await dbContext.UserNotes
+            .Where(n => n.Id == noteId && n.UserId == userId)
+            .FirstOrDefaultAsync();
+
+        if (userNoteToDelete != null)
+        {
+            dbContext.UserNotes.Remove(userNoteToDelete);
+            await dbContext.SaveChangesAsync();
+        }
+    }
 }
