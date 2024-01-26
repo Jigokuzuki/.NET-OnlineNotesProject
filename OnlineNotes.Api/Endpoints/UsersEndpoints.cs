@@ -104,7 +104,7 @@ public static class UsersEndpoints
 
 
             return Results.Ok(new { id = user.Id, token = tokenString });
-        }).RequireAuthorization(Policies.WriteAccess);
+        });
 
         group.MapPut("/{id}", async (IUsersRepository repository, int id, UpdateUserDto updateUserDto) =>
         {
